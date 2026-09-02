@@ -1,12 +1,16 @@
 import {
   Ban,
+  BriefcaseBusiness,
+  ChevronDown,
   Copyright,
   CreditCard,
   ExternalLink,
   Gamepad2,
   Library,
   PackageCheck,
+  Palette,
   Sparkles,
+  UsersRound,
 } from 'lucide-react';
 
 const navigation = [
@@ -19,10 +23,85 @@ const navigation = [
   { label: '上架與交付', href: '#delivery' },
 ];
 
+const audiences = [
+  {
+    number: '01',
+    icon: BriefcaseBusiness,
+    copy: (
+      <>
+        <strong>（婚宴、銷售者、宣傳者）</strong>如果你想分享些什麼，可以選擇用遊戲的形式分享給他人，只需一個連結，便能利用遊戲分享世界：
+      </>
+    ),
+  },
+  {
+    number: '02',
+    icon: Palette,
+    copy: (
+      <>
+        <strong>（學生、繪師、美術、企劃）</strong>如果你需要一個遊戲，無論是學生、遊戲美術、遊戲企劃，需要累積作品集的所有人，或是你只是單純的想要自己的角色出現在遊戲中，都歡迎找我，在製作過程中，我也會利用我的經驗告訴你該如何完成這個作品：
+      </>
+    ),
+  },
+  {
+    number: '03',
+    icon: UsersRound,
+    copy: (
+      <>
+        <strong>（玩家）</strong>如果你只是想要一個屬於自己的遊戲，或有一些遊戲想法但無法實現，甚至是單純的想搞怪，把朋友的照片放到遊戲中，也歡迎來找我聊聊：
+      </>
+    ),
+  },
+];
+
 const games = [
-  'https://woominytr.itch.io/critical',
-  'https://woominytr.itch.io/little-sharpshooter',
-  'https://woominytr.itch.io/ink-dive-runner',
+  {
+    title: 'Critical',
+    type: '黑白動作跑酷',
+    url: 'https://woominytr.itch.io/critical',
+    cover: '/games/critical-01.webp',
+    description:
+      '黑白漫畫風的橫向動作遊戲，在能量有限的狀態下閃避敵人與障礙，挑戰高難度關卡。',
+    screenshots: [
+      { src: '/games/critical-01.webp', alt: 'Critical 黑白城市戰鬥關卡' },
+      { src: '/games/critical-02.webp', alt: 'Critical 換裝衣櫃畫面' },
+    ],
+  },
+  {
+    title: 'Little Sharpshooter',
+    type: '休閒弓箭射擊',
+    url: 'https://woominytr.itch.io/little-sharpshooter',
+    cover: '/games/little-sharpshooter-01.webp',
+    description:
+      '以拉弓、瞄準與放箭為核心的休閒射擊遊戲，包含關卡與經典模式，適合快速上手游玩。',
+    screenshots: [
+      {
+        src: '/games/little-sharpshooter-01.webp',
+        alt: 'Little Sharpshooter 經典模式畫面',
+      },
+      {
+        src: '/games/little-sharpshooter-02.webp',
+        alt: 'Little Sharpshooter 秋季關卡畫面',
+      },
+    ],
+  },
+  {
+    title: 'Ink Dive Runner',
+    type: '變異生存闖關',
+    url: 'https://woominytr.itch.io/ink-dive-runner',
+    cover: '/games/ink-dive-runner-01.webp',
+    description:
+      '俯視角的變異生存遊戲，在場景中移動、收集點數並選擇能力變化，逐步打造不同玩法。',
+    screenshots: [
+      {
+        src: '/games/ink-dive-runner-01.webp',
+        alt: 'Ink Dive Runner 野餐區生存畫面',
+      },
+      {
+        src: '/games/ink-dive-runner-02.webp',
+        alt: 'Ink Dive Runner 能力調整畫面',
+      },
+    ],
+  },
 ];
 
 export default function Home() {
@@ -31,19 +110,30 @@ export default function Home() {
       <div className="pixel-grid pixel-grid-left" aria-hidden="true" />
       <div className="pixel-grid pixel-grid-right" aria-hidden="true" />
 
+      <div className="brand-banner wrap">
+        <img
+          src="/woomin-facebook-cover-1640x624.png"
+          alt="梧銘 woomin 客製化遊戲製作"
+        />
+      </div>
+
       <header className="hero wrap">
         <div className="hero-copy">
           <span className="eyebrow" aria-hidden="true">
             <Gamepad2 size={18} strokeWidth={2.2} />
           </span>
-          <h1>你好，我是遊戲製作師梧銘woomin。</h1>
+          <h1 aria-label="你好　我是遊戲設計師　梧銘woomin">
+            <span className="hero-title-hello">你好</span>
+            <span className="hero-title-role">我是遊戲設計師</span>
+            <span className="hero-title-name">梧銘woomin</span>
+          </h1>
           <p>我正在進行面向大眾的客製化遊戲開發，讓遊戲成為日常生活的工具之一。</p>
           <p>簡而言之，聯絡我，讓我為你量身打造一款遊戲。</p>
         </div>
 
         <div className="hero-mark" aria-hidden="true">
           <div className="mark-frame">
-            <img src="/brand-avatar.png" alt="" />
+            <img src="/woomin-arcade-profile-1080x1080.png" alt="" />
           </div>
         </div>
       </header>
@@ -61,9 +151,15 @@ export default function Home() {
         <section id="audience" className="section-card section-wide">
           <SectionHeading icon={<Sparkles />} title="誰適合找我？" />
           <div className="audience-grid">
-            <p>（婚宴、銷售者、宣傳者）如果你想分享些什麼，可以選擇用遊戲的形式分享給他人，只需一個連結，便能利用遊戲分享世界：</p>
-            <p>（學生、繪師、美術、企劃）如果你需要一個遊戲，無論是學生、遊戲美術、遊戲企劃，需要累積作品集的所有人，或是你只是單純的想要自己的角色出現在遊戲中，都歡迎找我，在製作過程中，我也會利用我的經驗告訴你該如何完成這個作品：</p>
-            <p>（玩家）如果你只是想要一個屬於自己的遊戲，或有一些遊戲想法但無法實現，甚至是單純的想搞怪，把朋友的照片放到遊戲中，也歡迎來找我聊聊：</p>
+            {audiences.map(({ number, icon: Icon, copy }) => (
+              <article className="audience-card" key={number}>
+                <div className="audience-card-top" aria-hidden="true">
+                  <span>{number}</span>
+                  <Icon />
+                </div>
+                <p>{copy}</p>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -80,13 +176,62 @@ export default function Home() {
 
         <section id="games" className="section-card section-wide games-section">
           <SectionHeading icon={<Library />} title="遊戲範例：" />
-          <div className="game-links">
+          <p className="games-lead">點選遊戲封面，即可查看遊戲截圖與簡單介紹。</p>
+          <div className="game-showcase">
             {games.map((game, index) => (
-              <a key={game} href={game} target="_blank" rel="noreferrer">
-                <span className="game-number">0{index + 1}</span>
-                <span>{game}</span>
-                <ExternalLink aria-hidden="true" size={19} />
-              </a>
+              <details className="game-card" key={game.url}>
+                <summary>
+                  <div className="game-cover">
+                    <img src={game.cover} alt="" loading="lazy" />
+                    <span className="game-index" aria-hidden="true">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div className="game-cover-copy">
+                      <span>{game.type}</span>
+                      <h3>{game.title}</h3>
+                    </div>
+                  </div>
+                  <div className="game-summary-bar">
+                    <span>查看遊戲內容</span>
+                    <ChevronDown aria-hidden="true" />
+                  </div>
+                </summary>
+
+                <div className="game-detail">
+                  <div className="game-intro">
+                    <div>
+                      <span className="game-kicker">ABOUT THE GAME</span>
+                      <p>{game.description}</p>
+                    </div>
+                    <a href={game.url} target="_blank" rel="noreferrer">
+                      前往 itch.io
+                      <ExternalLink aria-hidden="true" size={18} />
+                    </a>
+                  </div>
+
+                  <div className="screenshot-grid">
+                    {game.screenshots.map((screenshot, screenshotIndex) => (
+                      <figure key={screenshot.src}>
+                        <a
+                          href={screenshot.src}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`開啟 ${game.title} 遊戲截圖 ${screenshotIndex + 1}`}
+                        >
+                          <img
+                            src={screenshot.src}
+                            alt={screenshot.alt}
+                            loading="lazy"
+                          />
+                        </a>
+                        <figcaption>
+                          SCREENSHOT {String(screenshotIndex + 1).padStart(2, '0')}
+                        </figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                </div>
+              </details>
             ))}
           </div>
         </section>
