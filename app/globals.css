@@ -219,6 +219,43 @@
   animation-delay: 340ms;
 }
 
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+  animation: rise-in 680ms 400ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
+}
+
+.social-links a {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border: 2px solid #000;
+  border-radius: 12px;
+  background: #fff;
+  color: #000;
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 4px 4px 0 var(--orange);
+  transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  background: var(--orange);
+  box-shadow: 1px 1px 0 #000;
+  outline: none;
+  transform: translate(3px, 3px);
+}
+
+.social-links a > svg:last-child {
+  opacity: 0.65;
+}
+
 .hero-mark {
   position: relative;
   animation: mark-enter 780ms 220ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
@@ -327,7 +364,7 @@
   padding: clamp(28px, 4vw, 54px);
   border: 2px solid #000;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.96);
+  background: #fff;
   box-shadow: 8px 8px 0 #000;
 }
 
@@ -486,6 +523,7 @@
 .games-section {
   position: relative;
   overflow: hidden;
+  padding: clamp(26px, 3vw, 40px);
   background: #fff;
 }
 
@@ -507,7 +545,9 @@
 
 .game-showcase {
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+  align-items: start;
 }
 
 .game-card {
@@ -524,6 +564,10 @@
   transform: translate(-2px, -2px);
 }
 
+.game-card[open] {
+  grid-column: 1 / -1;
+}
+
 .game-card summary {
   display: block;
   cursor: pointer;
@@ -537,9 +581,14 @@
 .game-cover {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 8.4;
+  aspect-ratio: 630 / 500;
   border-bottom: 2px solid #000;
   background: #d8d7d2;
+}
+
+.game-card[open] .game-cover {
+  max-height: 320px;
+  aspect-ratio: 16 / 5.6;
 }
 
 .game-cover::after {
@@ -837,11 +886,9 @@
 
 @keyframes card-reveal {
   from {
-    opacity: 0;
     transform: translateY(34px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -891,6 +938,10 @@
   .audience-grid,
   .two-column-grid {
     grid-template-columns: 1fr;
+  }
+
+  .game-showcase {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -990,6 +1041,15 @@
   }
 
   .game-cover {
+    aspect-ratio: 4 / 3;
+  }
+
+  .game-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .game-card[open] .game-cover {
+    max-height: none;
     aspect-ratio: 4 / 3;
   }
 

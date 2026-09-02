@@ -1,6 +1,7 @@
 import {
   Ban,
   BriefcaseBusiness,
+  Camera,
   ChevronDown,
   Copyright,
   CreditCard,
@@ -9,6 +10,7 @@ import {
   Library,
   PackageCheck,
   Palette,
+  MessageCircle,
   Sparkles,
   UsersRound,
 } from 'lucide-react';
@@ -21,6 +23,19 @@ const navigation = [
   { label: '著作權相關', href: '#copyright' },
   { label: '付費相關', href: '#payment' },
   { label: '上架與交付', href: '#delivery' },
+];
+
+const socialLinks = [
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/profile.php?id=100093949087216&locale=zh_TW',
+    icon: MessageCircle,
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/woomin_games/',
+    icon: Camera,
+  },
 ];
 
 const audiences = [
@@ -55,22 +70,22 @@ const audiences = [
 
 const games = [
   {
-    title: 'Critical',
-    type: '黑白動作跑酷',
+    title: 'Critical Slime',
+    type: '史萊姆成長生存',
     url: 'https://woominytr.itch.io/critical',
-    cover: '/games/critical-01.webp',
+    cover: '/games/critical-cover.webp',
     description:
-      '黑白漫畫風的橫向動作遊戲，在能量有限的狀態下閃避敵人與障礙，挑戰高難度關卡。',
+      '操控會不斷吞噬並長大的史萊姆，在野餐場景中吃下更大的物件、累積點數並解鎖各種修改能力。',
     screenshots: [
-      { src: '/games/critical-01.webp', alt: 'Critical 黑白城市戰鬥關卡' },
-      { src: '/games/critical-02.webp', alt: 'Critical 換裝衣櫃畫面' },
+      { src: '/games/critical-01.webp', alt: 'Critical Slime 野餐區生存畫面' },
+      { src: '/games/critical-02.webp', alt: 'Critical Slime 能力調整畫面' },
     ],
   },
   {
     title: 'Little Sharpshooter',
     type: '休閒弓箭射擊',
     url: 'https://woominytr.itch.io/little-sharpshooter',
-    cover: '/games/little-sharpshooter-01.webp',
+    cover: '/games/little-sharpshooter-cover.webp',
     description:
       '以拉弓、瞄準與放箭為核心的休閒射擊遊戲，包含關卡與經典模式，適合快速上手游玩。',
     screenshots: [
@@ -86,19 +101,19 @@ const games = [
   },
   {
     title: 'Ink Dive Runner',
-    type: '變異生存闖關',
+    type: '黑白動作跑酷',
     url: 'https://woominytr.itch.io/ink-dive-runner',
-    cover: '/games/ink-dive-runner-01.webp',
+    cover: '/games/ink-dive-runner-cover.webp',
     description:
-      '俯視角的變異生存遊戲，在場景中移動、收集點數並選擇能力變化，逐步打造不同玩法。',
+      '黑白漫畫風的橫向動作遊戲，在能量有限的狀態下閃避敵人與障礙，挑戰高難度關卡。',
     screenshots: [
       {
         src: '/games/ink-dive-runner-01.webp',
-        alt: 'Ink Dive Runner 野餐區生存畫面',
+        alt: 'Ink Dive Runner 黑白城市戰鬥關卡',
       },
       {
         src: '/games/ink-dive-runner-02.webp',
-        alt: 'Ink Dive Runner 能力調整畫面',
+        alt: 'Ink Dive Runner 換裝衣櫃畫面',
       },
     ],
   },
@@ -129,6 +144,7 @@ export default function Home() {
           </h1>
           <p>我正在進行面向大眾的客製化遊戲開發，讓遊戲成為日常生活的工具之一。</p>
           <p>簡而言之，聯絡我，讓我為你量身打造一款遊戲。</p>
+          <SocialLinks />
         </div>
 
         <div className="hero-mark" aria-hidden="true">
@@ -284,5 +300,19 @@ function SectionHeading({
       <span aria-hidden="true">{icon}</span>
       <h2>{title}</h2>
     </div>
+  );
+}
+
+function SocialLinks() {
+  return (
+    <nav className="social-links" aria-label="梧銘的社群平台">
+      {socialLinks.map(({ label, href, icon: Icon }) => (
+        <a key={label} href={href} target="_blank" rel="noreferrer">
+          <Icon aria-hidden="true" size={19} />
+          <span>{label}</span>
+          <ExternalLink aria-hidden="true" size={15} />
+        </a>
+      ))}
+    </nav>
   );
 }
