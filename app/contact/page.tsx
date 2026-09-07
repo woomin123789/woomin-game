@@ -152,11 +152,13 @@ export default function ContactPage() {
                     <span>{number}</span>
                     <Icon aria-hidden="true" />
                   </div>
-                  <h3>（{title}）</h3>
-                  <span className="guide-card-action">
-                    查看聯繫問題
-                    <ChevronDown aria-hidden="true" />
-                  </span>
+                  <div className="guide-card-heading">
+                    <h3>{title}</h3>
+                    <ChevronDown
+                      className="guide-card-chevron"
+                      aria-hidden="true"
+                    />
+                  </div>
                 </summary>
                 <ul>
                   {questions.map(({ label, copy }) => (
