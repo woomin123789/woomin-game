@@ -3,7 +3,9 @@ import {
   ArrowLeft,
   BriefcaseBusiness,
   CheckCircle2,
+  ChevronDown,
   Gamepad2,
+  Handshake,
   Palette,
   UsersRound,
 } from 'lucide-react';
@@ -32,11 +34,11 @@ const contactGuides = [
     questions: [
       {
         label: '遊戲目的',
-        copy: '你要這款遊戲的目的是什麼？',
+        copy: '你要這款遊戲的目的是什麼？希望遊玩者怎麼接觸這款遊戲（比如掃碼打開的網頁遊戲，或是到特定平台上下載）？',
       },
       {
         label: '遊戲玩法',
-        copy: '有沒有指定的玩法？若有，則具體是什麼？',
+        copy: '有沒有指定的玩法？若有，則具體是什麼？若無，則可以主要參考一些手機小遊戲。',
       },
       {
         label: '必要需求',
@@ -55,7 +57,7 @@ const contactGuides = [
       },
       {
         label: '遊戲玩法',
-        copy: '有沒有指定的玩法？若有，則具體是什麼？',
+        copy: '有沒有指定的玩法？若有，則具體是什麼？若無，則可以提出你喜歡什麼類型的遊戲，最好多選擇幾種類型。',
       },
       {
         label: '必要需求',
@@ -79,6 +81,17 @@ const contactGuides = [
       {
         label: '必要需求',
         copy: '在這款遊戲當中，有什麼是必備的？若提前商議明確目標，則最後成品未達標時可取消訂單退還訂金。',
+      },
+    ],
+  },
+  {
+    number: '04',
+    title: '雙向合作者',
+    icon: Handshake,
+    questions: [
+      {
+        label: '合作方式',
+        copy: '你希望在已有遊戲的基礎上加入你的形象或品牌，或是為你打造一款遊戲？',
       },
     ],
   },
@@ -133,12 +146,18 @@ export default function ContactPage() {
 
           <div className="guide-grid">
             {contactGuides.map(({ number, title, icon: Icon, questions }) => (
-              <article className="guide-card" key={number}>
-                <div className="guide-card-title">
-                  <span>{number}</span>
-                  <Icon aria-hidden="true" />
-                </div>
-                <h3>（{title}）</h3>
+              <details className="guide-card" key={number}>
+                <summary className="guide-card-summary">
+                  <div className="guide-card-title">
+                    <span>{number}</span>
+                    <Icon aria-hidden="true" />
+                  </div>
+                  <h3>（{title}）</h3>
+                  <span className="guide-card-action">
+                    查看聯繫問題
+                    <ChevronDown aria-hidden="true" />
+                  </span>
+                </summary>
                 <ul>
                   {questions.map(({ label, copy }) => (
                     <li key={label}>
@@ -150,7 +169,7 @@ export default function ContactPage() {
                     </li>
                   ))}
                 </ul>
-              </article>
+              </details>
             ))}
           </div>
         </section>

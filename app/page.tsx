@@ -210,12 +210,12 @@ export default function Home() {
         <section id="games" className="section-card section-wide games-section">
           <SectionHeading icon={<Library />} title="遊戲範例：" />
           <p className="games-lead">
-            點選遊戲封面，即可查看遊戲截圖與簡單介紹。
+            點選遊戲封面查看遊戲截圖與簡單介紹；點選下方說明欄直接前往 itch.io。
           </p>
           <div className="game-showcase">
             {games.map((game, index) => (
               <details className="game-card" key={game.url}>
-                <summary>
+                <summary aria-label={`展開 ${game.title} 的遊戲截圖與介紹`}>
                   <div className="game-cover">
                     <img src={game.cover} alt="" loading="lazy" />
                     <span className="game-index" aria-hidden="true">
@@ -225,12 +225,22 @@ export default function Home() {
                       <span>{game.type}</span>
                       <h3>{game.title}</h3>
                     </div>
-                  </div>
-                  <div className="game-summary-bar">
-                    <span>查看遊戲內容</span>
-                    <ChevronDown aria-hidden="true" />
+                    <span className="game-expand-cue">
+                      展開內容
+                      <ChevronDown aria-hidden="true" />
+                    </span>
                   </div>
                 </summary>
+
+                <a
+                  className="game-summary-bar"
+                  href={game.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>前往 itch.io 遊戲頁面</span>
+                  <ExternalLink aria-hidden="true" />
+                </a>
 
                 <div className="game-detail">
                   <div className="game-intro">
